@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Define a modern color scheme */
+        :root {
+            --primary-color: #008C76;
+            --secondary-color: #00A88F;
+            --text-color: #333333;
+            --background-color: #f0f0f0;
+        }
+
+        /* Apply the color scheme */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        /* Header Styles */
+        header.feature-box {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header.feature-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        header.feature-box li {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 18px;
+        }
+
+        header.feature-box li:last-child {
+            margin-right: 0;
+        }
+
+        header.feature-box a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        header.feature-box a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Main Title */
+        h1 {
+            text-align: center;
+            margin: 30px 0;
+            color: var(--text-color);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        ul li {
+            margin: 10px 0;
+            color: #333333;
+        }
+
+        /* Image Container */
+        .image-container {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 800px;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+
+        /* Form Styles */
+        section.last-section form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        form .custom-file-input {
+            margin-top: 10px;
+        }
+
+        form .btnCustom {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        form .btnCustom:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Footer Styles */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            text-align: center;
+            color: #ffffff;
+            font-size: 14px;
+            padding: 10px 0;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="feature-box">
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/FrontPage">Video</a></li>
+                <li><a href="/image">Image</a></li>
+                <li><a href="/webcam">Live Webcam</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1><strong>Detect and count crops from Videos</strong></h1>
+
+    <section class="col-sm image-container">
+        <img src="{{ url_for('video') }}" alt="Uploaded video">
+    </section>
+
+    <section class="last-section">
+        <form method="POST" enctype="multipart/form-data">
+            {{form.hidden_tag()}}
+            {{form.files(class_="custom-file-input")}}
+
+            <button type="submit" name="favorite" value="x" class="btnCustom">
+                Submit
+            </button>
+        </form>
+    </section>
+
+    <footer>
+        &copy; 2023 Farmer Buddy | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </footer>
+
+    <!-- Include jQuery library and JavaScript as needed -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

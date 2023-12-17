@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ObjectDetection-YOLOv8</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header.feature-box.right {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        header.feature-box.right ul {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: inline-block;
+            background-color: #777777;
+            border-radius: 20px;
+            padding: 10px 15px;
+            margin: 5px;
+        }
+
+        li:hover {
+            background-color: #ff5555;
+        }
+
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        header a:hover {
+            color: #cccccc;
+        }
+
+        @media screen and (max-width: 480px) {
+            header.feature-box.right {
+                justify-content: center;
+            }
+
+            header.feature-box.right ul {
+                flex-wrap: wrap;
+            }
+
+            li {
+                margin: 2px;
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333333;
+            text-align: center;
+            color: #ffffff;
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <header class="feature-box right">
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/FrontPage">Video</a></li>
+                <li><a href="/webcam">Live Webcam</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <header class="feature-box below">
+    </header>
+
+    <footer>
+        <p>Counting Crops by Souvik Mallick</p>
+    </footer>
+</body>
+</html>

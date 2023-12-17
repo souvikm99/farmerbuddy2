@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ObjectDetection-YOLOv8</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header.feature-box.right {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        header.feature-box.right ul {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0;
+            margin: 0;
+        }
+
+        header.feature-box.top{
+            background-color:black;
+            height:100px;
+            margin:0px;
+            padding:20px;
+        }
+
+        header.feature-box.second{
+            height:50px;
+            text-align:left;
+        }
+
+        .features{
+            background-color:black;
+            width: 900px;
+            height: 700px;
+            border-radius: 35px;
+            object-fit: contain;
+            margin:20px;
+        }
+
+        section.col-sm{
+            background-color:#333333;
+            width: 500px;
+            height: 325px;
+            border-radius: 35px;
+            object-fit: contain;
+            margin:40px;
+            overflow: hidden;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 35px;
+            object-fit: contain;
+        }
+
+        @media (max-width: 1200px) {
+            .features,
+            section.col-sm {
+                width: 500px;
+                height: 325px;
+                margin: 20px auto;
+                border-radius: 20px;
+                object-fit: contain;
+            }
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 35px;
+                object-fit: contain;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .features,
+            section.col-sm{
+                width: 500px;
+                height: 325px;
+                margin: 20px auto;
+                border-radius: 20px;
+                object-fit: contain;
+            }
+
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 35px;
+                object-fit: contain;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .features,
+            section.col-sm{
+                width: 500px;
+                height: 325px;
+                margin: 20px auto;
+                border-radius: 20px;
+                object-fit: contain;
+            }
+
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 35px;
+                object-fit: contain;
+            }
+        }
+
+        .new{
+            color:black;
+            margin:0px;
+            padding:10px;
+            background-color:green;
+            margin:0px;
+            margin-top:-10px;
+        }
+
+        li {
+            display: inline-block;
+            background-color: #777777;
+            border-radius: 20px;
+            padding: 10px 15px;
+            margin: 5px;
+        }
+
+        li:hover {
+            background-color: #ff5555;
+        }
+
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        header a:hover {
+            color: #cccccc;
+        }
+
+        @media screen and (max-width: 480px) {
+            header.feature-box.right {
+                /* justify-content: center; */
+            }
+
+            header.feature-box.right ul {
+                flex-wrap: wrap;
+            }
+
+            li {
+                margin: 2px;
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333333;
+            text-align: center;
+            color: #ffffff;
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #cccccc;
+        }
+
+        section.last-section {
+            position: absolute;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            bottom: 60px; /* Adjust this value as needed */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="feature-box right">
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/FrontPage">Video</a></li>
+                <li><a href="/webcam">Live Webcam</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <header class="feature-box second">
+        <h1><strong>Output Video</strong></h1>
+    </header>
+   
+    <section class="col-sm " >
+        <img src="{{ url_for('video') }}"   alt="Upload video">
+
+</section>
+<section>
+  <div class="new" >
+    <form method = 'POST' enctype="multipart/form-data" style="align-content: center; text-align: center;display: flex;">
+      {{form.hidden_tag()}}
+      {{form.file(class_="custom-file-input")}}
+
+      <div>
+      <button type="submit" name="favorite" value="x" class="btnCustom">
+          Submit
+      </button>
+    </div>
+    </form>
+  </div>
+
+</div>
+  </section>
+
+    <footer>
+        <p>Counting Crops by Souvik Mallick</p>
+    </footer>
+</body>
+</html>

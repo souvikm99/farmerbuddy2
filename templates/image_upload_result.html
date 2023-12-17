@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Object Detection Result</title>
+</head>
+<body>
+    <img src="{{ image_path }}" alt="Detected Image">
+    <h2>Object Counts:</h2>
+    <ul>
+        {% for class_name, count in object_counts.items() %}
+        <li>{{ class_name }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

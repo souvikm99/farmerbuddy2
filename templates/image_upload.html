@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Object Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* header.feature-box {
+            background-color: #008C76;
+            color: #ffffff;
+            padding: 15px 0;
+            text-align: center;
+            
+        }
+
+        header.feature-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        header.feature-box li {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 18px;
+        }
+
+        header.feature-box li:last-child {
+            margin-right: 0;
+        }
+
+        header.feature-box a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        header.feature-box a:hover {
+            color: #00A88F;
+        } */
+        header.feature-box {
+            background-color: #008C76;
+            color: #ffffff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header.feature-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        header.feature-box li {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 18px;
+        }
+
+        header.feature-box li:last-child {
+            margin-right: 0;
+        }
+
+        header.feature-box a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        header.feature-box a:hover {
+            color: var(--secondary-color);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 30px 0;
+            color: #333333;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            color: #333333;
+        }
+
+        button {
+            background-color: #008C76;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #00A88F;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 30px 0;
+            color: #333333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        ul li {
+            margin: 10px 0;
+            color: #333333;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 0 auto;
+            max-width: 800px; /* Adjust the maximum width as needed */
+            border: 2px solid #008C76;
+            border-radius: 10px;
+            overflow: auto; /* Enable horizontal scrolling */
+            white-space: nowrap; /* Prevent images from wrapping to the next line */
+        }
+
+        .image-container img {
+            width: 200px; /* Set the fixed width of each image */
+            height: auto;
+            margin: 0 10px; /* Add margin between images */
+            display: inline-block; /* Display images inline */
+            border-radius: 10px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #008C76;
+            text-align: center;
+            color: #ffffff;
+            font-size: 14px;
+            padding: 10px 0;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #00A88F;
+        }
+    </style>
+</head>
+<body>
+    <header class="feature-box">
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/FrontPage">Video</a></li>
+                <li><a href="/image">Image</a></li>
+                <li><a href="/webcam">Live Webcam</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Detect and count crops from Images</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <label for="files">Choose up to 5 images:</label>
+        {{ form.files(multiple="multiple") }}
+        <button type="submit">Detect Objects</button>
+    </form>
+
+    {% if detected_images %}
+    <h2>Detected Images</h2>
+    <div class="image-container">
+        {% for detected_image in detected_images %}
+        <img src="data:image/jpeg;base64,{{ detected_image }}" alt="Detected Image">
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if object_counts is defined %}
+    <h2>Object Counts</h2>
+    <ul>
+        {% for class_name, count in object_counts.items() %}
+        <li>{{ class_name }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form method="POST" action="/export_csv">
+        {% for class_name, count in object_counts.items() %}
+        <input type="hidden" name="class_name[]" value="{{ class_name }}">
+        <input type="hidden" name="class_count[]" value="{{ count }}">
+        {% endfor %}
+        <button type="submit">Export to CSV</button>
+    </form>
+    
+    
+    
+
+    <footer>
+        &copy; 2023 Farmer Buddy | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </footer>
+</body>
+<script>
+    document.getElementById("export-button").addEventListener("click", function () {
+        // Submit the form when the button is clicked
+        document.getElementById("export-form").submit();
+    });
+</script>
+
+</html>
